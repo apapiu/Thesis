@@ -1,0 +1,57 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsfonts}
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\large {
+Let $\Delta$ be a triangulation of a (pseudo)manifold from which we remove a subset of vertices $W$ together with the induced subcomplex $\Delta_W$. We will anaylize how the number of connected components of the 1-skeleton $G(\Delta)$ on $V\setminus W$ vertices relates to $H_{d-1}(\Delta_W)$. In some cases one completely determines the other, in other cases the way $H_{d-1}(\Delta_W)$ "sits" inside $H_{d-1}(\Delta)$ matters. For pseudomanifolds we obtain that if $H_{d-1}(\Delta_W)$ is trivial removing $W$ does not disconnect the graph and use this to prove lower bounds on connectivity of different classes of complexes. \\
+
+All simplicial complexes we consider will be pure. We will work with homology over $\mathbb{Z}_2 $. \\
+
+Definition: A $d$-dimensional simplcial complex $\Delta$ is a \textbf{weak pseudomanifold} if every $d-1$ face is contained in exactly two $d$ faces. If in addition the link of each face is connected we call $\Delta$ a \textbf{normal pseudomanifold}. A \textbf{pseudomanifold} is a weak pseudomanifold in which the facet graph is connected. It's not hard to show that every normal pesudomanifold is indeed a pseudomanifold.\\
+
+Let $W$ be a subset of the vertex set of $\Delta$. We define the following relation on the facets of $\Delta$ not contained in $W$: $F_1 \sim  F_n$ if there is a sequence of facets $F_1, F_2,...,F_n$ such that $F_i \cap F_{i+1}$ has codimension 1 and is not in $W$. It's easy to see that this is an equivalence relation and we will call the equivalence classes thus obtained \textbf{strong components of $\Delta/W$}. We will denote the number of such classes by \textbf{$S(\Delta/W)$}. \\
+
+
+
+\textbf{Theorem 1}: Let $\Delta$ be a d-pseudomanifold and $W$ a subset of vertices. If $H_{d-1}(\Delta_W)=0$ then removing $W$ does not disconnect $G(\Delta)$. \\
+
+
+Proof: We will in fact prove the stronger statement: $$dim H_0(\Delta_{V-W})\leq S(\Delta/W) \leq dim H_{d-1}(\Delta_W)+1$$
+
+Let $K$ be a strong component in $\Delta/W$. Let $v_1,v_2$ be two vertices contained in  $v_i\in F_i$ for $i=1,2$. We can then build a path between $v_1,v_2$  in $\Delta_{V-W}$ by following the sequence of facets connecting $F_1$ and $F_2$ and at each step choosing a point in $F_i \cap F_{i+1}$ which is not in W. This proves the first inequality. \\
+
+
+For the second inequality let $K_1,K_2,...,K_n$ be the stong components of $\Delta/W$. These are elements in $C_d(\Delta)$ and $\partial(K_i) \in C_{d-1}(\Delta_W)$ since otherwise one could extend the stong component $K_i$ over a $d-2$ face not in contained in $W$. Since $\partial(\partial(K_i)=0$ we can think of $[\partial(K_i)]$ as elements in $H_{d-1}(\Delta_W)$. Now assume some of the stong components satisfy a linear relation in $H_{d_1}(\Delta_W)$ so their sum will be equal to $\partial(\sigma)$ with $\sigma$ in $C_d(\Delta)$. This implies that 
+  $$\partial(\sum K_i+\sigma) =0$$ And this can only happen if all the $K_i$ are in the sum because the top homology of $\Delta$ is supported on the whole complex. Thus we get that any $n-1$ strong components are linearly independent so $S(\Delta/W)= n\leq dim H_{d-1}(\Delta_W)+1  $
+
+
+
+\subsection{Applications of Theorem 1}
+
+
+Let $C(i,d)$ the class of simplicial complexes with $H_d(\Delta)\neq 0$ and 
+no missing faces of dimension greater than $i$. These complexes were introduced in [1] by Nevo For given $i,d$  there exist unique integers $0 \leq r$ and $1 \leq r\leq i$ such that $d+1 = qi+r$. Define $$S(i,d) = \partial \sigma^i\star...\star \partial \sigma^i \star \partial \sigma^r $$ where $\partial \sigma^i$, the boundary of the $i$-simplex, appears $q$-times in the join. We have the following lemma.   \\
+
+Lemma (Nevo[1]) If $\Delta$ is in $C(i,d)$ then $f_0(\Delta)\geq f_0(C(i,d))$= q(i+1)+(r+1) = d +1 + q + 1 \\
+
+\textbf{Theorem 2}. Let $\Delta$ be a $d$ - pseudomanifold with no missing faces of dimension higher than i then $G(\Delta)$ is $d+q-1$ - connected. \\ 
+
+Proof: Assume removing the subset of vertices $W$ disconnects $G(\Delta)$. By Theorem 1 we get that $H_{d-1}(\Delta_W)\neq 0$ and since the complex $\Delta_W$ is induced it cannot have any missing faces of dimension higher than $i$. It follows that $\Delta_W \in C(i, d-1)$ so $f_0(\Delta_W) \geq f_0(S(i,d-1) \geq d+q-1 $. \\ \\ 
+
+
+\textbf{Remark}: Results similar to Theorem 2 have been published in [2] using methods from algebraic topology similar to ours but also commutative algebra.  The results there are for a class of complexes called banner complexes. However we will show that the connectivity bounds we get are tighter. 
+
+We illlustrate this by an example: Let $\Delta = C_3 * C_4$ be the join of 3-cycle and a 4-cycle. This is a 3-sphere. $\Delta$ is not flag since it contains an empty triangle, however it is easily seen that $\Delta \in C(2, 3)$ since it contains no empty tetrahedra by the join construction.  Thus \\
+
+
+[1] Eran Nevo, \textit{Remarks on Missing Faces and Generalized Lower
+Bounds on Face Numbers}
+
+
+
+
+
+}
+\end{document}
