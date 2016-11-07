@@ -1,57 +1,173 @@
 \documentclass[a4paper]{article}
 
 \usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
 
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+ 
+ \usepackage{sectsty}
+\usepackage{lipsum}
+
+\allsectionsfont{\centering}
+ 
+
+\title{Connectivity of Pseudomanifolds}
+\author{Alexandru Papiu}
+\date{November, 6, 2016}
+
 \begin{document}
+
+\maketitle
+
+
+
+\section{Preliminaries and History}
+
 \large {
-Let $\Delta$ be a triangulation of a (pseudo)manifold from which we remove a subset of vertices $W$ together with the induced subcomplex $\Delta_W$. We will anaylize how the number of connected components of the 1-skeleton $G(\Delta)$ on $V\setminus W$ vertices relates to $H_{d-1}(\Delta_W)$. In some cases one completely determines the other, in other cases the way $H_{d-1}(\Delta_W)$ "sits" inside $H_{d-1}(\Delta)$ matters. For pseudomanifolds we obtain that if $H_{d-1}(\Delta_W)$ is trivial removing $W$ does not disconnect the graph and use this to prove lower bounds on connectivity of different classes of complexes. \\
+ 
+Given a polytope or a triangulated manifold it is natural to try to understand  the structure of its 1-dimensional skeleton. This was first done by Steinitz in 1922 where he solved the problem in the 3-dimensional case: the graphs of 3-polytopes are exactly the 3-connected planar graphs. Balinksi extended these results to any dimension by proving that the graphs of $d$-polytopes are $d$-connected.  This was generalized further by Barnette who showed that the graph of every d-dimensional polyhedral pseudomanifold is (d + 1)-connected. \\
 
-All simplicial complexes we consider will be pure. We will work with homology over $\mathbb{Z}_2 $. \\
-
-Definition: A $d$-dimensional simplcial complex $\Delta$ is a \textbf{weak pseudomanifold} if every $d-1$ face is contained in exactly two $d$ faces. If in addition the link of each face is connected we call $\Delta$ a \textbf{normal pseudomanifold}. A \textbf{pseudomanifold} is a weak pseudomanifold in which the facet graph is connected. It's not hard to show that every normal pesudomanifold is indeed a pseudomanifold.\\
-
-Let $W$ be a subset of the vertex set of $\Delta$. We define the following relation on the facets of $\Delta$ not contained in $W$: $F_1 \sim  F_n$ if there is a sequence of facets $F_1, F_2,...,F_n$ such that $F_i \cap F_{i+1}$ has codimension 1 and is not in $W$. It's easy to see that this is an equivalence relation and we will call the equivalence classes thus obtained \textbf{strong components of $\Delta/W$}. We will denote the number of such classes by \textbf{$S(\Delta/W)$}. \\
+More recently these results have been sharpened in cases where more is known about the structure of the simplical complex: Athanasiadis \cite{athana} proved better connectivity bounds for flag pseudomanifolds and Bjorner and Vorwerk \cite{bjorner} and Adiprasito, Goodarzi and Verbaro \cite{adiprasito} exteneted the results for banner complexes.  \\
 
 
+Here we present a straightforward approach rooted in combinatorial topology that extends and simplifies previous approaches. Here is the basic idea: Let $\Delta$ be a triangulation of a (pseudo)manifold from which we remove a subset of vertices $W$ together with the induced subcomplex $\Delta_W$. We will analyze how the number of connected components of the 1-skeleton $G(\Delta)$ on $V\setminus W$ vertices relates to $H_{d-1}(\Delta_W)$. In some cases one completely determines the other, in other cases the way $H_{d-1}(\Delta_W)$ "sits" inside $H_{d-1}(\Delta)$ matters. For pseudomanifolds we obtain that if $H_{d-1}(\Delta_W)$ is trivial removing $W$ does not disconnect the graph and use this to prove lower bounds on connectivity of different classes of complexes. \\
 
-\textbf{Theorem 1}: Let $\Delta$ be a d-pseudomanifold and $W$ a subset of vertices. If $H_{d-1}(\Delta_W)=0$ then removing $W$ does not disconnect $G(\Delta)$. \\
+
+?maybe more background on simplicial complexes here? \\
+
+Let $\Delta$ be a simplicial complex.  The underlying graph (or
+1-skeleton) $G(\Delta)$ of $\Delta$ is the graph obtained by restricting $\Delta$ to faces of cardinality at most two. A graph $G$ is \textbf{k-connected} if it has at least $k$-vertices and removing any $k-1$ vertices does not disconnect $G$. All simplicial complexes we consider will be pure. We will work with homology over $\mathbb{Z}_2 $. \\
+
+A $d$-dimensional simplicial complex $\Delta$ is a \textbf{weak pseudomanifold} if every $d-1$ face is contained in exactly two $d$ faces. If in addition the link of each face is connected we call $\Delta$ a \textbf{normal pseudomanifold}. A \textbf{pseudomanifold} is a weak pseudomanifold in which the facet graph is connected. It's not hard to show that every normal pseudomanifold is indeed a pseudomanifold. \\
+
+? maybe more background on pseudomanifolds - they're minimal cycles ?  
 
 
-Proof: We will in fact prove the stronger statement: $$dim H_0(\Delta_{V-W})\leq S(\Delta/W) \leq dim H_{d-1}(\Delta_W)+1$$
+\section{Main Connectivity Bound}
+
+
+	We will introduce the notion of strong connected components and use it to prove the main theorem on the connectivity of manifolds. Let $W$ be a subset of the vertex set of $\Delta$. We define the following relation on the facets of $\Delta$ not contained in $W$: $F_1 \sim  F_n$ if there is a sequence of facets $F_1, F_2,...,F_n$ such that $F_i \cap F_{i+1}$ has co-dimension 1 and is not in $W$. It's easy to see that this is an equivalence relation and we will call the equivalence classes thus obtained \textbf{strong components of $\Delta/W$}. We will denote the number of such classes by \textbf{$S(\Delta/W)$}. \\
+
+\begin{theorem}Let $\Delta$ be a d-pseudomanifold and $W$ a subset of vertices. If $H_{d-1}(\Delta_W)=0$ then removing $W$ does not disconnect $G(\Delta)$. 
+\end{theorem}
+
+\begin{proof} We will in fact prove the stronger statement: 
+
+\begin{equation}
+dim H_0(\Delta_{V-W})\leq S(\Delta/W) \leq dim H_{d-1}(\Delta_W)+1
+\end{equation}		
 
 Let $K$ be a strong component in $\Delta/W$. Let $v_1,v_2$ be two vertices contained in  $v_i\in F_i$ for $i=1,2$. We can then build a path between $v_1,v_2$  in $\Delta_{V-W}$ by following the sequence of facets connecting $F_1$ and $F_2$ and at each step choosing a point in $F_i \cap F_{i+1}$ which is not in W. This proves the first inequality. \\
 
+For the second inequality let $K_1,K_2,...,K_n$ be the strong components of $\Delta/W$. These are elements in $C_d(\Delta)$ and $\partial(K_i) \in C_{d-1}(\Delta_W)$ since otherwise one could extend the strong component $K_i$ over a $d-2$ face not in contained in $W$. Since $\partial(\partial(K_i)=0$ we can think of $[\partial(K_i)]$ as elements in $H_{d-1}(\Delta_W)$. Now assume some of the strong components satisfy a linear relation in $H_{d_1}(\Delta_W)$ so their sum will be equal to $\partial(\sigma)$ with $\sigma$ in $C_d(\Delta)$. This implies that 
+  $$\partial(\sum K_i+\sigma) =0$$ However since $\Delta$ is a pseudomanifold, the top homology of $\Delta$ must be supported on the entire complex and this can only happen if all the $K_i$ are in the sum. Thus we get that any $n-1$ strong components are linearly independent so $S(\Delta/W)= n\leq dim H_{d-1}(\Delta_W)+1  $
+\end{proof}
 
-For the second inequality let $K_1,K_2,...,K_n$ be the stong components of $\Delta/W$. These are elements in $C_d(\Delta)$ and $\partial(K_i) \in C_{d-1}(\Delta_W)$ since otherwise one could extend the stong component $K_i$ over a $d-2$ face not in contained in $W$. Since $\partial(\partial(K_i)=0$ we can think of $[\partial(K_i)]$ as elements in $H_{d-1}(\Delta_W)$. Now assume some of the stong components satisfy a linear relation in $H_{d_1}(\Delta_W)$ so their sum will be equal to $\partial(\sigma)$ with $\sigma$ in $C_d(\Delta)$. This implies that 
-  $$\partial(\sum K_i+\sigma) =0$$ And this can only happen if all the $K_i$ are in the sum because the top homology of $\Delta$ is supported on the whole complex. Thus we get that any $n-1$ strong components are linearly independent so $S(\Delta/W)= n\leq dim H_{d-1}(\Delta_W)+1  $
+\section{Stronger Results for Normal Pseudomanifolds}
+
+
+One would expect better estimates on the connectivity of $G(\Delta)$ if we restrict ourselves to spaces without singularities, say triangulated manifolds. In fact a much more lax condition is necessary, namely requiring that the links be connected, to force the first inequality in (1) to become an equality. \\
+
+\begin{lemma} 
+If $\Delta$ is a normal pseudomanifold then $dim(H_d(\Delta,\Delta_W)) = dim H_0(\Delta_{V-W}) = S(\Delta/W)$ \\
+\end{lemma}
+
+\begin{proof}
+For the first inequality: Let $v,w$ be in the same connected component of $G/W$. We now need to show is that any two facets $F$ and $G$ with the first containing $v$ and the second $w$ are in the same strong component of $\Delta/W$. The way we will build the facet sequence is by following the path between $v$ and $w$ and taking advantage of the facet connectivity of the links. Say $v_{i}, v_{i+1}$ are two consecutive vertices in the path from $v$ to $w$ and $F_i, F_{i+1}$ facets with $v_i\in F_i$ and $v_{i+1} \in F_{i+1}$ Now the link of $v_i$ is easily checked to also be a normal peseudomanifold and thus facet connected. Let $F_{i,i+1}$ be a face in the link of $\{v_i,v_{i+1}\}$. We can find a sequence of facets in $\Delta$   going from $F_i$ to $F_{i,1+1}$ using the facet connectivity of lk$v_i$. Furthermore any two such facets have $v_i$ in common so this is a strong sequence in $\Delta/W$. Analogously we can find a sequence from $F_{i,1+1}$ to $F_{i}$ so $F_i$ and $F_{i+1}$are in the same strong component of $\Delta/W$ Following the path between $v$ to $w$ and applying the procedure above one gets that $F$ and $G$ are in the same strong component of $\Delta/W$.  \\
+
+For the second inequality: 
+Let $\sigma$ be a relative cycle in ker$\partial _d$, $F$ be a facet of $\Delta$ contained in $\sigma$ and $K_F$ the corresponding strong component. Asume there is a facet $F'$ in $K_F$ that is not in $\sigma$. There will thus exist $F_i,F_{i+1}$ in the facet sequence connecting $F$ and $F'$ in such that $F_i\cap F_{i+1}=G \not \subset W$ with $F_i\in \sigma$ and $F_{i+1} \not \in \sigma$ .But since $G$ is contained in exactly two facets we get that $G$ is in $\partial _d(\sigma) \subset W$ - a contradiction. So every relative cycle is a sum of the strong compoenents. It follows that the strong components  of $\Delta/W$ are a basis for the kernel and the result follows. \\
+
+\end{proof}
+
+
+\begin{theorem}
+Let $\Delta$ be a normal pseudomanifold and let $i$ be the inclusion map $i: H_{d-1}(\Delta_W)\rightarrow H_{d-1}(\Delta)$. Then  $dimH_0(\Delta_{V-W})$= dim (ker $i$)-1.
+\end{theorem}
+
+\begin{proof}
+
+We will be using the fact that $H_d(\Delta,\Delta_W)$ fits into the exact long sequence
+
+\begin{equation} 0 \longrightarrow H_d(\Delta) \longrightarrow H_d(\Delta,\Delta_W) \longrightarrow H_{d-1}(\Delta_W) \longrightarrow H_{d-1}(\Delta) \longrightarrow ... 
+\end{equation}
+
+
+By using the exact sequence above we get $S(\Delta/W) = dim(H_d(\Delta,\Delta_W)=$dim(ker $i$)$ - 1 $ and combined with Lemma 3.1 the result follows.
+\end{proof}
+
+\textbf{Remarks:}
+For normal pseudomanifolds we get that $H_0(\Delta_{V-W})\cong H_d(\Delta,\Delta_W)$ which can be intepreted as a weak form of Poinacere-Lefschetz Duality for normal pseudomanifolds. \\
+
+\textbf{Corollary}: If $\Delta$ is a normal d-pseudomanifold with $H_{d-1}(\Delta)=0$ then $v(\Delta/W) =$ dim$ H_{d-1}(\Delta_W)-1$ and $k(G(\Delta))=$min$\{|W|: H_{d-1}(\Delta_W)\neq 0\}$
 
 
 
-\subsection{Applications of Theorem 1}
+\section{Applications}
 
 
 Let $C(i,d)$ the class of simplicial complexes with $H_d(\Delta)\neq 0$ and 
-no missing faces of dimension greater than $i$. These complexes were introduced in [1] by Nevo For given $i,d$  there exist unique integers $0 \leq r$ and $1 \leq r\leq i$ such that $d+1 = qi+r$. Define $$S(i,d) = \partial \sigma^i\star...\star \partial \sigma^i \star \partial \sigma^r $$ where $\partial \sigma^i$, the boundary of the $i$-simplex, appears $q$-times in the join. We have the following lemma.   \\
+no missing faces of dimension greater than $i$. These complexes were introduced in \cite{nevo} by Nevo For given $i,d$  there exist unique integers $0 \leq r$ and $1 \leq r\leq i$ such that $d+1 = qi+r$. Define $$S(i,d) = \partial \sigma^i\star...\star \partial \sigma^i \star \partial \sigma^r $$ where $\partial \sigma^i$, the boundary of the $i$-simplex, appears $q$-times in the join. We have the following lemma.   \\
 
-Lemma (Nevo[1]) If $\Delta$ is in $C(i,d)$ then $f_0(\Delta)\geq f_0(C(i,d))$= q(i+1)+(r+1) = d +1 + q + 1 \\
+\begin{lemma} (Nevo \cite{nevo}) If $\Delta$ is in $C(i,d)$ then $f_0(\Delta)\geq f_0(C(i,d))$= q(i+1)+(r+1) = d +1 + q + 1 \\
+\end{lemma}
 
-\textbf{Theorem 2}. Let $\Delta$ be a $d$ - pseudomanifold with no missing faces of dimension higher than i then $G(\Delta)$ is $d+q-1$ - connected. \\ 
+\begin{theorem}
+Let $\Delta$ be a $d$ - pseudomanifold with no missing faces of dimension higher than i then $G(\Delta)$ is $d+q-1$ - connected. \\ 
+\end{theorem}
 
-Proof: Assume removing the subset of vertices $W$ disconnects $G(\Delta)$. By Theorem 1 we get that $H_{d-1}(\Delta_W)\neq 0$ and since the complex $\Delta_W$ is induced it cannot have any missing faces of dimension higher than $i$. It follows that $\Delta_W \in C(i, d-1)$ so $f_0(\Delta_W) \geq f_0(S(i,d-1) \geq d+q-1 $. \\ \\ 
+\begin{proof}
+Assume removing the subset of vertices $W$ disconnects $G(\Delta)$. By Theorem 1 we get that $H_{d-1}(\Delta_W)\neq 0$ and since the complex $\Delta_W$ is induced it cannot have any missing faces of dimension higher than $i$. It follows that $\Delta_W \in C(i, d-1)$ so $f_0(\Delta_W) \geq f_0(S(i,d-1) \geq d+q-1 $. 
+
+\end{proof} 
+
+Note that the two previous results of Barnette (in the simplicial case) and Athanasiadis follow from Theorem 4.2: \\
+
+\textbf{Corollary}: Let $\Delta$ be a pseudomanifold then $G(\Delta)$ is $d+1$ connected. Furthermore if $\Delta$ is a flag complex then $G(\Delta)$ is $2d$ connected.\\
 
 
-\textbf{Remark}: Results similar to Theorem 2 have been published in [2] using methods from algebraic topology similar to ours but also commutative algebra.  The results there are for a class of complexes called banner complexes. However we will show that the connectivity bounds we get are tighter. 
+\textbf{Remark}: Results similar to Theorem 2 have been published in \cite{adiprasito} using methods from algebraic topology similar to ours but also commutative algebra.  The results there are for a class of complexes called banner complexes which are a generalization of flag complexes. We will show however that the connectivity bounds we get are tighter. 
 
-We illlustrate this by an example: Let $\Delta = C_3 * C_4$ be the join of 3-cycle and a 4-cycle. This is a 3-sphere. $\Delta$ is not flag since it contains an empty triangle, however it is easily seen that $\Delta \in C(2, 3)$ since it contains no empty tetrahedra by the join construction.  Thus \\
-
-
-[1] Eran Nevo, \textit{Remarks on Missing Faces and Generalized Lower
-Bounds on Face Numbers}
+We illustrate this by an example: Let $\Delta = C_3 * C_4$ be the join of 3-cycle and a 4-cycle. This is a 3-sphere. $\Delta$ is not flag since it contains an empty triangle, however it is easily seen that $\Delta \in C(2, 3)$ since no empty tetrahedra are introduced by the join construction.  Thus by Theorem 4.2 we get that $G(\Delta)$ is $5$-connected and notice that this is the best bound possible - it is easily checked that the connectivity of $G(\Delta)$ is 5. However $b(\Delta)$ as defined in \cite{adiprasito} page 3 will be 2. This is because the link of any vertex in the 4-cycle $C_4$ is the boundary of a triangular bipyramid which is not banner. Thus by Theorem 12 in \cite{adiprasito} we only get that $G(\Delta)$ is 4 - connected which is true but weaker than our result. \\
 
 
+
+
+\begin{thebibliography}{9}
+
+\bibitem{athana}
+
+Christos A. Athanasiadis,
+\textit{Some Combinatorial Properties Of Flag Simplicial
+Pseudomanifolds And Spheres}, Ark. Mat., 00 (2008), 1–12
+
+\bibitem{nevo} 
+Eran Nevo, 
+\textit{Remarks on Missing Faces and Generalized Lower Bounds on Face Numbers}
+
+\bibitem{bjorner}
+Anders Bjorner,  Kathrin Vorwerk
+\textit{On The Connectivity of Manifold Graphs}, 
+Proceedings Of The
+American Mathematical Society
+Volume 143, Number 10, October 2015
+
+\bibitem{adiprasito} 
+Karim A. Adiprasito, Afshin Goodarzi, Matteo Varbaro
+\textit{Connectivity Of Pseudomanifold Graphs From An Algebraic
+Point Of View}
+
+
+\end{thebibliography}
 
 
 
 }
 \end{document}
+
+
+
